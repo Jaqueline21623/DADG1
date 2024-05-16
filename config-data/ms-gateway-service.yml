@@ -1,7 +1,6 @@
 server:
   port: 8085
 
-
 eureka:
   client:
     serviceUrl:
@@ -10,7 +9,6 @@ eureka:
   instance:
     #hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
 
 spring:
   cloud:
@@ -32,4 +30,4 @@ spring:
         - id: ms-pedido-service
           uri: lb://ms-pedido-service
           predicates:
-            - Path=/pedido/**
+            -Path=/pedido/**

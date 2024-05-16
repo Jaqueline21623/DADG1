@@ -1,18 +1,14 @@
 server:
-  #port: 8085
-  port: ${PORT:${SERVER_PORT:0}}
-
+  port: 8085
 
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8090/eureka}
-      #defaultZone: http://localhost:8090/eureka
-  instance:
-    # hostname: localhost
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      defaultZone: http://localhost:8090/eureka
 
+  instance:
+    hostname: localhost
 
 spring:
   cloud:
@@ -24,7 +20,7 @@ spring:
         - id: ms-catalogo-service
           uri: lb://ms-catalogo-service
           predicates:
-            - Path=/categoria/**, /producto/**
+            - Path=/categoria/, /producto/**
 
         - id: ms-cliente-service
           uri: lb://ms-cliente-service
@@ -34,4 +30,4 @@ spring:
         - id: ms-pedido-service
           uri: lb://ms-pedido-service
           predicates:
-            - Path=/pedido/**
+            - Path=/pedido/**

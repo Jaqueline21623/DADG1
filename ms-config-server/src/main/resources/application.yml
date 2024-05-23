@@ -9,13 +9,13 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Jaqueline21623/DADG1.git # ruta del repositorio git
+          uri: https://github.com/noetipo/DAD-2024-G1.git # ruta del repositorio git
           searchPaths: config-data
+          default-label: main
           #username:
           #password:
-          default-label: main
 
   security:
     user:
-      password: 123456
       name: root
+      password: 123456

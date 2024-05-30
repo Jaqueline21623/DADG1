@@ -42,4 +42,15 @@ public class CategoriaController {
         categoriaService.eliminar(id);
         return "Eliminacion correcta";
     }
+
+    @GetMapping("/pdf")
+    public ResponseEntity<byte[]> exportPdf(@RequestBody QueryRequest request) throws IOException, DocumentException {
+        List<Map<String, Object>> queryResults = myService.executeQuery(request);
+        ByteArrayOutputStream pdfStream = PdfUtils.generatePdfStream(queryResults);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=query_results.pdf");
+        headers.setContentLength(pdfStream.size());
+        return new ResponseEntity<>(pdfStream.toByteArray(), headers, HttpStatus.OK);
+    }
 }
